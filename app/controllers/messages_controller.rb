@@ -11,7 +11,6 @@ class MessagesController < ApplicationController
     @message = Message.new(params[:message])
     @message.request = request
     if @message.deliver
-      open(URI::encode("http://light-clock-platform.herokuapp.com/client_profiles/add?name=#{&message.name}&email=#{@message.email}&organisation=#{@message.organisation}&phone=#{@message.phone}&research_subject=#{@message.research_subject}&timezone=#{@message.timezone}&to_be_contacted=#{@message.time}"))
       flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
       redirect_to root_path, notice: "Your form was succesfully submitted!"
     else
